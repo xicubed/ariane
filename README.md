@@ -1,13 +1,21 @@
 # Ariane
 
-Atom & RSS parser for Clojure
+Atom & RSS parser for Clojure. Modified to post to a flipthis-webhook running on 127.0.0.1:5000
+
+e.g. user=> (use 'ariane.core)
+     nil
+     user=> (ariane.core/parse "http://your-rss-feed-here.com/feed/")
 
 ## Usage
 
-Ariane supports Atom 1.0 and RSS 2.0
+supports RSS 2.0
+
+e.g. user=> (use 'ariane.core)
+     nil
+     user=> (ariane.core/parse "http://your-rss-feed-here.com/feed/")
 
 ## License
 
-Copyright © 2013 Eric Prunier
+Original Copyright © 2013 Eric Prunier
 
 Distributed under the Eclipse Public License, the same as Clojure.
