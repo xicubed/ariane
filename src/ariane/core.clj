@@ -2,7 +2,11 @@
   "Generic namespace for feed type autodetection and parsing."
   (:require [clojure.xml :as xml]
             [ariane.rss :as rss]
-            [ariane.atom :as atom]))
+            [ariane.atom :as atom]
+            [clj-time.core :as ct]
+            [clj-time.format :as ctf]))
+
+
 
 (defn- rss-feed?
   [feed]
@@ -19,4 +23,8 @@
     (cond 
      (rss-feed? feed) (rss/parse-rss feed)
      (atom-feed? feed) (atom/parse-atom feed)
-     :else (println "Unsupported format"))))
+     :else (println "Unsupported format")))
+ )
+
+
+
