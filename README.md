@@ -6,11 +6,12 @@ Atom & RSS parser for Clojure. Modified to post to a flipthis-webhook running on
 
 supports RSS 2.0
 
-e.g. user=> (use 'ariane.core)
+e.g.
+     user=> (use 'ariane.core)
 
      nil
 
-     user=> (ariane.core/parse "http://your-rss-feed-here.com/feed/")
+    user=> (ariane.core/parse "http://your-rss-feed-here.com/feed/")
 
 ## License
 
