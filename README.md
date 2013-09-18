@@ -4,7 +4,7 @@ Atom & RSS parser for Clojure. Modified to post to a flipthis-webhook running on
 
 ## Usage
 
-supports RSS 2.0
+Supports RSS 2.0
 
 e.g.
 
