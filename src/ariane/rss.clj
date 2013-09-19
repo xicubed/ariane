@@ -7,13 +7,6 @@
             [clj-time.format :as ctf]
             ))
 
-
-
-
-
-
-
-
 (def lastrun (atom (slurp "lastrun.txt") ))
 
 (defn updatedate

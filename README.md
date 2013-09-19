@@ -14,6 +14,10 @@ e.g.
 
     user=> (ariane.core/parse "http://your-rss-feed-here.com/feed/")
 
+OR now added
+
+    lein run
+
 ## License
 
 Original Copyright © 2013 Eric Prunier

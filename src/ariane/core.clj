@@ -5,7 +5,8 @@
             [ariane.atom :as atom]
             [clj-time.core :as ct]
             [clj-time.format :as ctf]
-            [overtone.at-at :as ot]))
+            [overtone.at-at :as ot]
+            [clojurewerkz.quartzite.scheduler :as qs]))
 
 
 ; scheduling
@@ -44,9 +45,10 @@
      :else (println "Unsupported format")))
  )
 
-(defn runme
-  []
-  (println (parse my-url)))
-  ;(do (parse my-url)))
+;(defn runme
+;  []
+;  (println (parse my-url)))
+;  ;(do (parse my-url)))
+;
+;(ot/every 360000 runme my-pool :desc "polls periodically" :initial-delay 10000)
 
-(ot/every 360000 runme my-pool :desc "polls periodically" :initial-delay 10000)

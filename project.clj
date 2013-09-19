@@ -7,4 +7,6 @@
                  [org.clojure/data.zip "0.1.1"]
                  [clj-http "0.7.6"]
                  [clj-time "0.6.0"]
-                 [overtone/at-at "1.2.0"]])
+                 [overtone/at-at "1.2.0"]
+                 [clojurewerkz/quartzite "1.1.0"]]
+  :main ariane.sched)
