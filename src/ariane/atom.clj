@@ -4,9 +4,9 @@
             [clojure.data.zip.xml :as zipxml]
             ))
 
-;; TODO
- ; modify as was done with rss.clj
+;; TODO: modify as was done with rss.clj
 
+;; TODO: another todo
 
 (defn- add-map-entry
   "Add key/value entry to map only if value is not nil."
