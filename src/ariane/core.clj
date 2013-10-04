@@ -5,14 +5,14 @@
             [ariane.atom :as atom]
             [clj-time.core :as ct]
             [clj-time.format :as ctf]
-            [overtone.at-at :as ot]
+            ; [overtone.at-at :as ot]
             [clojurewerkz.quartzite.scheduler :as qs]))
 
 
 ; scheduling
 ; set the feed you want to post
-(def my-url "http://news.boisestate.edu/update/feed/")
-(def my-pool (ot/mk-pool))
+; (def my-url "http://news.boisestate.edu/update/feed/")
+; (def my-pool (ot/mk-pool))
 ;; (ot/every 60000 (parse my-url) my-pool :desc "polls periodically")
 
 ;; scheduling stuff https://github.com/overtone/at-at
