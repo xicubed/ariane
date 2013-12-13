@@ -76,6 +76,7 @@
   []
   ;(swap! lastrun (fn [lastrun] (lr)))
   ; testing adding code
+  ; moar testing
   (reset! lastrun @now)
   nil
   )
