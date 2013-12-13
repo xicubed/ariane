@@ -75,6 +75,7 @@
 (defn update
   []
   ;(swap! lastrun (fn [lastrun] (lr)))
+  ; testing adding code
   (reset! lastrun @now)
   nil
   )
