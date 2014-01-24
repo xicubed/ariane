@@ -5,7 +5,8 @@
             [clj-http.client :as client]
             [clj-time.core :as ct]
             [clj-time.format :as ctf]
-            ))
+            [clojure.test]
+            [clj-webdriver.taxi :as taxi]))
 
 (def lastrun (atom (slurp "lastrun.txt") ))
 
@@ -62,15 +63,31 @@
          {:name (first (zipxml/xml-> author :name zipxml/text))
           :uri (first (zipxml/xml-> author :uri zipxml/text))})))
 
+; #mal la clojure system variables via (System/getenv "FLIPBOARD_USERNAME")
+; put this in your ~/.profile on a mac
+; export FLIPBOARD_USERNAME=yourusername
+; export FLIPBOARD_PASSWORD=yourpassword
+; export FLIPBOARD_MAGAZINE=yourmagazine
+
 (defn- entries
   [root]
   (for [entry (zipxml/xml-> root :item)]
     (if (ct/before? (ctf/parse custom-formatter (str @lastrun)) (ctf/parse custom-formatter (first (zipxml/xml-> entry :pubDate zipxml/text))))
-        (client/get "http://127.0.0.1:5000" {:query-params {"url" (first (zipxml/xml-> entry :link zipxml/text) ), "title" (first (zipxml/xml-> entry :title zipxml/text))}}  )
-        (reset! lastrun @now)
+      (do (taxi/set-driver! {:browser :chrome} (str "https://share.flipboard.com/bookmarklet/popout?v=2&" (client/generate-query-string {"title" (first (zipxml/xml-> entry :title zipxml/text))}) "&" (client/generate-query-string {"url" (first (zipxml/xml-> entry :link zipxml/text))}) "&t=" (.getTime (new java.util.Date))))
+        (taxi/wait-until #(taxi/exists? "#username"))
+        (taxi/input-text "#username" (System/getenv "FLIPBOARD_USERNAME"))
+        (taxi/input-text "#password" (System/getenv "FLIPBOARD_PASSWORD"))
+        (taxi/submit (taxi/find-element {:tag :button, :text "Sign In"}))
+        ; your magazine name
+        (taxi/implicit-wait 10000)
+        (taxi/click (taxi/find-element {:tag :h1, :text (System/getenv "FLIPBOARD_MAGAZINE")}))
+        (taxi/click (taxi/find-element {:tag :button, :text "Add"}))
+        (taxi/implicit-wait 10000)
+        (taxi/quit))
+      (reset! lastrun @now)
+      )
     )
   )
-)
 
 (defn update
   []

@@ -9,5 +9,5 @@
                  [clj-time "0.6.0"]
                  [overtone/at-at "1.2.0"]
                  [clojurewerkz/quartzite "1.1.0"]
-                 [kerodon "0.2.0"]]
+                 [clj-webdriver "0.6.0"]]
   :main ariane.sched)
