@@ -17,7 +17,7 @@
 ;; (input-text "#password" (System/getenv "FLIPBOARD_PASSWORD"))
 ;; (submit (find-element {:tag :button, :text "Sign In"}))
 ;; to click the name of the magazine... in this case mal9000
-;; (click (find-element {:tag :h1, :text "mal9000" }))
+;; (click (find-element {:tag :h1, :text "FLIPBOARD_MAGAZINE" }))
 ;; (click (find-element {:tag :button, :text "Add" }))
 ;; to quit the driver
 ;; (quit)
