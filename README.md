@@ -3,6 +3,8 @@
 RSS parser for Clojure. Modified to post to a Flipboard via a chromedriver
 https://code.google.com/p/selenium/wiki/ChromeDriver plug-in.
 
+[![Build Status](https://travis-ci.org/xicubed/ariane.png?branch=master)](https://travis-ci.org/xicubed/ariane)
+
 ## Usage
 
 Supports RSS 2.0
