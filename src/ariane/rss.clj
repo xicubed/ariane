@@ -74,21 +74,26 @@
   (for [entry (zipxml/xml-> root :item)]
     (if (ct/before? (ctf/parse custom-formatter (str @lastrun)) (ctf/parse custom-formatter (first (zipxml/xml-> entry :pubDate zipxml/text))))
       (do (taxi/set-driver! {:browser :chrome} (str "https://share.flipboard.com/bookmarklet/popout?v=2&" (client/generate-query-string {"title" (first (zipxml/xml-> entry :title zipxml/text))}) "&" (client/generate-query-string {"url" (first (zipxml/xml-> entry :link zipxml/text))}) "&t=" (.getTime (new java.util.Date))))
-        (taxi/wait-until #(taxi/exists? "#username"))
-        (taxi/input-text "#username" (System/getenv "FLIPBOARD_USERNAME"))
-        (taxi/input-text "#password" (System/getenv "FLIPBOARD_PASSWORD"))
-        (taxi/submit (taxi/find-element {:tag :button, :text "Sign In"}))
-        ; your magazine name
-        (taxi/implicit-wait 10000)
-        (taxi/click (taxi/find-element {:tag :h1, :text (System/getenv "FLIPBOARD_MAGAZINE")}))
-        (taxi/click (taxi/find-element {:tag :button, :text "Add"}))
-        (Thread/sleep 10000)
-        (taxi/quit)
-        (Thread/sleep 10000))
+          (taxi/implicit-wait 30000)
+          (taxi/wait-until #(taxi/exists? "#username"))
+          (taxi/input-text "#username" (System/getenv "FLIPBOARD_USERNAME"))
+          (taxi/input-text "#password" (System/getenv "FLIPBOARD_PASSWORD"))
+          (taxi/submit (taxi/find-element {:tag :button, :text "Sign In"}))
+          ; your magazine name
+
+          (taxi/click (taxi/find-element {:tag :h1, :text (System/getenv "FLIPBOARD_MAGAZINE")}))
+          (taxi/click (taxi/find-element {:tag :button, :text "Add"}))
+
+        (taxi/wait-until #(taxi/exists? {:tag :h1, :text "Success, all done!"} ) 15000)
+         ; (taxi/quit (taxi/find-element {:tag :h1, :text "Success, all done!"}))
+
+         ; (taxi/submit (taxi/find-element {:tag :button, :text "Add"}))
+          (taxi/quit))
+
       (reset! lastrun @now)
-      )
     )
   )
+)
 
 (defn update
   []
@@ -109,5 +114,4 @@
     {:infos (infos channel)
      :entries (entries channel)
     })
-  )
-
+)

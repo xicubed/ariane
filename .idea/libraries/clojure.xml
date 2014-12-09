@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="clojure">
+    <CLASSES>
+      <root url="jar:///usr/local/Cellar/leiningen/2.3.4/libexec/leiningen-2.3.4-standalone.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
